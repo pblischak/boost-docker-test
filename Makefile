@@ -10,7 +10,13 @@ LDFLAGS = -lboost_program_options
 
 .PHONY : install uninstall clean
 
-$(EXE) : $(OBJ)
+all :
+	@echo "Please enter either 'make mac' on a Mac, or 'make linux' on a Linux computer."
+
+linux : $(OBJ)
+	$(CXX) $(CXXFLAGS) -L${BOOST_LIB} -Wl,-rpath=/usr/local/lib -o $(EXE) $^ $(LDFLAGS)
+
+mac : $(OBJ)
 	$(CXX) $(CXXFLAGS) -L${BOOST_LIB} -o $(EXE) $^ $(LDFLAGS)
 
 $(OBJ) : %.o: %.cpp

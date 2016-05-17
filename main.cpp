@@ -2,9 +2,7 @@
 #include <iomanip>
 #include <string>
 
-#ifdef _OPENMP
-  #include <omp.h>
-#endif
+#include <omp.h>
 
 #include "CmdLine.hpp"
 
@@ -18,7 +16,7 @@ int main(int argc, char **argv){
 
   std::cout << "\nParallelization with OpenMP test...\n\n";
 
-  std::cout << "Loop 1 through 10 in parallel and print to STDOUT (won't be in order)...\n\n";
+  std::cout << "Loop 1 through 10 in parallel and print to STDOUT (not necessarily in order)...\n\n";
 
   #pragma omp parallel for
   for(int i = 0; i < 10; i++){
