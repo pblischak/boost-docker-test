@@ -4,6 +4,10 @@ BOOST_INC = /usr/local/include
 EXE = test
 OBJ = CmdLine.o main.o
 
+CXX=g++
+CXXFLAGS = -I${BOOST_INC} -O3 -g -std=c++11 -fopenmp
+LDFLAGS = -lboost_program_options
+
 .PHONY : install uninstall clean
 
 $(EXE) : $(OBJ)

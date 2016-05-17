@@ -4,10 +4,8 @@
 class CmdLine {
 
 public:
-
   CmdLine(int argCount, char **argVar);
   double val;
-  std::string str;
 
 };
 
