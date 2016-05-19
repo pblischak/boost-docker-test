@@ -8,7 +8,10 @@ MAINTAINER Paul Blischak <blischak.4@osu.edu>
 # Get g++ for compiling, wget to download Boost, git to clone source code repo,
 # and make to automate program compilation with Makefile provided
 RUN apt-get update \
-  && apt-get install -y g++ wget git make
+  && apt-get install -y git \
+                        g++ \
+                        make \
+                        wget
 
 # Download boost, untar, setup install with bootstrap and only do the Program Options library,
 # and then install
@@ -18,13 +21,16 @@ RUN cd /home && wget http://downloads.sourceforge.net/project/boost/boost/1.60.0
   && cd boost_1_60_0 \
   && ./bootstrap.sh --prefix=/usr/local --with-libraries=program_options \
   && ./b2 install \
-  && cd /home
+  && cd /home \
+  && rm -rf boost_1_60_0
 
 #
-RUN git clone https://github.com/pblischak/boost-docker-test.git
+RUN cd /home \
+  && git clone https://github.com/pblischak/boost-docker-test.git
 
-RUN cd boost-docker-test \
-  && make \
+RUN cd /home/boost-docker-test \
+  && make linux
 
-RUN ./test -h
-RUN ./test -v 1234
+ENV PATH /home/boost-docker-test:$PATH
+
+CMD ["bash"]

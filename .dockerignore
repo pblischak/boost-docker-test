@@ -1,0 +1,5 @@
+*.cpp
+*.hpp
+*.o
+LICENSE.md
+README.md
