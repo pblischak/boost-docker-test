@@ -29,4 +29,4 @@ uninstall :
 	@rm -i /usr/local/bin/$(EXE)
 
 clean :
-	@rm -i *.o test
+	@rm -i *.o $(EXE)
