@@ -1,7 +1,7 @@
 BOOST_LIB = /usr/local/lib
 BOOST_INC = /usr/local/include
 
-EXE = test
+EXE = BoostTest
 OBJ = CmdLine.o main.o
 
 CXX=g++
