@@ -1,5 +1,4 @@
 # This is a test Dockerfile.
-# I'm not sure if it works yet, so use with caution.
 
 FROM ubuntu
 
@@ -24,13 +23,13 @@ RUN cd /home && wget http://downloads.sourceforge.net/project/boost/boost/1.60.0
   && cd /home \
   && rm -rf boost_1_60_0
 
-#
+# Clone git repository with dummy C++ program, use make to compile, install it, then remove the repo
 RUN cd /home \
-  && git clone https://github.com/pblischak/boost-docker-test.git
-
-RUN cd /home/boost-docker-test \
-  && make linux
-
-ENV PATH /home/boost-docker-test:$PATH
+  && git clone https://github.com/pblischak/boost-docker-test.git \
+  && cd /home/boost-docker-test \
+  && make linux \
+  && make install \
+  && cd .. \
+  && rm -rf boost-docker-test
 
 CMD ["bash"]
