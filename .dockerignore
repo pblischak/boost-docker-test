@@ -3,3 +3,6 @@
 *.o
 LICENSE.md
 README.md
+.git
+.gitignore
+BoostTest
